@@ -43,7 +43,7 @@ public  class ForecastFragment extends Fragment {
         listView.setAdapter(mArrayAdapter);
 
 
-class FetchWeatherTask extends AsyncTask<URL, Integer, Long>{
+class FetchWeatherTask extends AsyncTask<Void,Void,Void>{
     private  final String LOG_TAG=FetchWeatherTask.class.getSimpleName();
     HttpURLConnection urlConnection = null;
     BufferedReader reader = null;
@@ -52,7 +52,7 @@ class FetchWeatherTask extends AsyncTask<URL, Integer, Long>{
         String forecastJsonStr = null;
 
     @Override
-    protected Long doInBackground(URL... urls) {
+    protected Void doInBackground(Void... params) {
         try {
             // Construct the URL for the OpenWeatherMap query
             // Possible parameters are avaiable at OWM's forecast API page, at
@@ -87,7 +87,7 @@ class FetchWeatherTask extends AsyncTask<URL, Integer, Long>{
             }
             forecastJsonStr = buffer.toString();
         } catch (IOException e) {
-            Log.e("PlaceholderFragment", "Error ", e);
+            Log.e(LOG_TAG, "Error ", e);
             // If the code didn't successfully get the weather data, there's no point in attemping
             // to parse it.
             return null;
