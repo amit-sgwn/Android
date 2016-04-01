@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -40,6 +41,7 @@ public  class ForecastFragment extends Fragment {
         inflater.inflate(R.menu.forecastfragment,menu);
     }
 
+
     ArrayAdapter<String> mArrayAdapter;
     private ListView listView;
     public ForecastFragment() {
@@ -55,7 +57,8 @@ public  class ForecastFragment extends Fragment {
         mArrayAdapter = new ArrayAdapter<String>(getActivity(), R.layout.list_item_forecast, R.id.list_item_forecast_textview, adapter);
         listView = (ListView) rootView.findViewById(R.id.listview_forecast);
         listView.setAdapter(mArrayAdapter);
-
+        return rootView;
+    }
 
 class FetchWeatherTask extends AsyncTask<Void,Void,Void>{
     private  final String LOG_TAG=FetchWeatherTask.class.getSimpleName();
@@ -122,6 +125,9 @@ class FetchWeatherTask extends AsyncTask<Void,Void,Void>{
 
 
     }
-        return rootView;
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==R.id.action_refresh) new FetchWeatherTask().execute();
+        return super.onOptionsItemSelected(item);
     }
 }
