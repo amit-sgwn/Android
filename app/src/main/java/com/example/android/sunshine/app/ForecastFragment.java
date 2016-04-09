@@ -3,6 +3,7 @@ package com.example.android.sunshine.app;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.BuildConfig;
 import android.support.v4.app.Fragment;
 import android.text.format.Time;
 import android.util.Log;
@@ -254,11 +255,7 @@ class FetchWeatherTask extends AsyncTask<String,Void,String[]>{
         }
         return null;
     }
-
-
-
-
-    }
+}
 
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId()==R.id.action_refresh) {
