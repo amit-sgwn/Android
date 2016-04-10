@@ -1,5 +1,6 @@
 package com.example.android.sunshine.app;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,7 +16,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -52,7 +52,6 @@ public  class ForecastFragment extends Fragment {
     }
 
 
-
     private ListView listView;
     public ForecastFragment() {
     }
@@ -62,7 +61,7 @@ public  class ForecastFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-        String[] fakedata = {"Monday-Sunny-82/54", "Today-Rainy-34/65", "Wednesday-Windy-50/60", "Tuesday-Awesome-67/70"};
+        final String[] fakedata = {"Monday-Sunny-82/54", "Today-Rainy-34/65", "Wednesday-Windy-50/60", "Tuesday-Awesome-67/70"};
         List<String> adapter = new ArrayList<String>(Arrays.asList(fakedata));
         mArrayAdapter = new ArrayAdapter<String>(getActivity(), R.layout.list_item_forecast, R.id.list_item_forecast_textview, adapter);
         listView = (ListView) rootView.findViewById(R.id.listview_forecast);
@@ -72,7 +71,8 @@ public  class ForecastFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 String forecast = mArrayAdapter.getItem(i);
-                Toast.makeText(getActivity(),forecast,Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getActivity(),DetailActivity.class).putExtra(Intent.EXTRA_TEXT,forecast);
+                startActivity(intent);
             }
         });
         return rootView;
