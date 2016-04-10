@@ -1,10 +1,8 @@
 package com.example.android.sunshine.app;
 
-import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.BuildConfig;
 import android.support.v4.app.Fragment;
 import android.text.format.Time;
 import android.util.Log;
@@ -186,6 +184,7 @@ class FetchWeatherTask extends AsyncTask<String,Void,String[]>{
                     int numDays = 7;
 
         try {
+            final String OPEN_WEATHER_MAP_API_KEY="3d94ca87dbd2bace4ab94629d5510dba";
             // Construct the URL for the OpenWeatherMap query
             // Possible parameters are avaiable at OWM's forecast API page, at
             // http://openweathermap.org/API#forecast
@@ -206,7 +205,7 @@ class FetchWeatherTask extends AsyncTask<String,Void,String[]>{
                                             .appendQueryParameter(FORMAT_PARAM, format)
                                             .appendQueryParameter(UNITS_PARAM, units)
                                             .appendQueryParameter(DAYS_PARAM, Integer.toString(numDays))
-                                            .appendQueryParameter(APPID_PARAM, BuildConfig.OPEN_WEATHER_MAP_API_KEY)
+                                            .appendQueryParameter(APPID_PARAM, OPEN_WEATHER_MAP_API_KEY)
                                            .build();
 
                                    url = new URL(builtUri.toString());
