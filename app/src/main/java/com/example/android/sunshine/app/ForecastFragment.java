@@ -184,7 +184,7 @@ class FetchWeatherTask extends AsyncTask<String,Void,String[]>{
                     int numDays = 7;
 
         try {
-            final String OPEN_WEATHER_MAP_API_KEY="3d94ca87dbd2bace4ab94629d5510dba";
+            final String OPEN_WEATHER_MAP_API_KEY="key";
             // Construct the URL for the OpenWeatherMap query
             // Possible parameters are avaiable at OWM's forecast API page, at
             // http://openweathermap.org/API#forecast
